@@ -17,7 +17,7 @@ public class BuyProcess {
 	WebDriver driver;
 	private By Product_Price=By.xpath("//span[@id='our_price_display']");
 	private By Quantity=By.xpath("//body/div[@id='page']/div[2]/div[1]/div[3]/div[1]/div[1]/div[1]/div[4]/form[1]/div[1]/div[2]/p[1]/a[2]/span[1]/i[1]");
-	private By Addedtocart=By.xpath("//header/div[3]/div[1]/div[1]/div[4]/div[1]/div[1]/h2[1]");
+	private By Addedtocart=By.xpath("//p[@id='add_to_cart']");
 	private By total=By.id("layer_cart_product_price");
 	private By Size_Colour=By.xpath("//span[@id='layer_cart_product_attributes']");
 	private By quantity=By.xpath("//span[@id='layer_cart_product_quantity']");
@@ -68,17 +68,8 @@ public void Add_To_Cart() {
 
 public void Added_Cart_Validation() {
 	boolean b=driver.findElement(Addedtocart).isDisplayed();
-	Assert.assertTrue(b);
-	if(b==true)
-	{
-		Assert.assertTrue(true);
-		
-		
-	}
-	else
-		Assert.fail();
-	
-	logger.info("Product added to cart successfully");
+	Assert.assertEquals("Added successfully", true, b);
+    logger.info("Product added to cart successfully");
 }
 
 public void Total_Price_Validation() {
@@ -86,14 +77,16 @@ public void Total_Price_Validation() {
 }
 
 public void Size_Quntity_Confirmation() {
-	boolean b=driver.findElement(Size_Colour).isDisplayed();
-	Assert.assertTrue(true);
-	boolean b1=driver.findElement(quantity).isDisplayed();
-	Assert.assertTrue(true);
-	logger.info("Quntity and colour displayed correctly");
+	   boolean b=driver.findElement(Size_Colour).isDisplayed();
+	   Assert.assertEquals("Colour and size mentioned", true, b);
+	   
+	   boolean b1=driver.findElement(quantity).isDisplayed();
+	   Assert.assertEquals("Quanticty checked", true, b1);
+	   
+	   logger.info("Quntity and colour displayed correctly");
 }
 
-public void Checkout() throws Exception {
+public void Checkout_After_AddedToCart() throws Exception {
 	WebDriverWait wait=new WebDriverWait(driver,20);
 	WebElement b=wait.until(ExpectedConditions.elementToBeClickable(Checkout));
 	driver.findElement(Checkout).click();
@@ -105,25 +98,28 @@ public void Checkout() throws Exception {
 
 public void Procedd_To_Checkout() throws Exception {
 	JavascriptExecutor js = (JavascriptExecutor) driver;
-    js.executeScript("window.scrollBy(0,1500)");
+    js.executeScript("window.scrollBy(0,1000)");
     driver.findElement(ProceedToCheckout).click();
     logger.info("Checkout for address window");
     Thread.sleep(2000);
+    
     JavascriptExecutor js1 = (JavascriptExecutor) driver;
-    js1.executeScript("window.scrollBy(0,1500)");
+    js1.executeScript("window.scrollBy(0,1000)");
     driver.findElement(AgainCheckout).click();
     logger.info("Checkout to proceed with shipping");
     Thread.sleep(2000);
+    
     WebElement checkbox=driver.findElement(Checkbox);
     checkbox.click();
     logger.info("Terms and conditions accepted");
+    
     driver.findElement(Check_Out).click();
     logger.info("Checkout to proceed with payment");
 }
 
 public void Checkout_Validations()  {
 	boolean b=driver.findElement(Product_Name).isDisplayed();
-	Assert.assertTrue(true);
+	Assert.assertEquals("Product name is correct", true, b);
 	logger.info("Product name is displayed");
 	String expected="In stock";
 	String actual=driver.findElement(Stock).getText();

@@ -23,9 +23,9 @@ public static final Logger logger = LogManager.getLogger(ProductPageObjects.clas
 	private By Send=By.id("sendEmail");
 	private By Recp_name=By.id("friend_name");
 	private By Recp_email=By.id("friend_email");
-	private By Send_Confirm=By.xpath("//body/div[2]/div[1]/div[1]/div[1]/p[1]");
+	private By Send_Confirm=By.xpath("//p[text()='Your e-mail has been sent successfully']");
 	private By review_Box=By.xpath("//body/div[@id='page']/div[2]/div[1]/div[3]/div[1]/div[1]/div[1]/div[3]/div[3]/ul[1]");
-	private By Bluetop=By.id("color_14");
+	private By Bluetop=By.id("color_14");   ////a[@name='Blue' and @class='color_pick selected']
 	
 
 	public ProductPageObjects(WebDriver driver) {
@@ -69,7 +69,7 @@ public static final Logger logger = LogManager.getLogger(ProductPageObjects.clas
    public void SendAFriend_Validation() {
 	   driver.findElement(Send_Confirm).getText();
        boolean b=driver.findElement(Send_Confirm).isDisplayed();
-       Assert.assertTrue(true);
+	   Assert.assertEquals("Sent successfully", true, b);
        logger.info("Your email has been sent to your friend successfully");
 
    }
@@ -94,7 +94,7 @@ public static final Logger logger = LogManager.getLogger(ProductPageObjects.clas
    
    public void Image_Change_Validation() {
 	   boolean b=driver.findElement(By.id("bigpic")).isDisplayed();
-	   Assert.assertTrue(b);
+	   Assert.assertEquals("Colour has changed to blue successfully", true, b);
 	   logger.info("Blue colour image displayed");
    }
 

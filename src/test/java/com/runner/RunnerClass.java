@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
 		features="classpath:features",
 		glue="",
-		tags="@signup",
+		tags="@buy",
 		plugin = {"pretty",
 				"html:target/html/htmlreport.html",
 				"json:target/json/file.json",

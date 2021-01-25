@@ -47,7 +47,7 @@ public HomePageObjects(WebDriver driver) {
 public void Login_Account() {
 	WebDriverWait wait = new WebDriverWait(driver, 20);
 	WebElement b=wait.until(ExpectedConditions.elementToBeClickable(Submit));
-	driver.findElement(Loginemail).sendKeys("kavipatil2@gmail.com");
+	driver.findElement(Loginemail).sendKeys("kavipatil271992@gmail.com");
 	driver.findElement(Loginpass).sendKeys("Kavita@123");
 	driver.findElement(Submit).click();
 
@@ -64,7 +64,7 @@ public void Create_Account() throws Exception {
 	boolean b=driver.findElement(Enter_Email).isDisplayed();
 	Assert.assertEquals("Creating new account", true, b);
 	Thread.sleep(2000);
-	driver.findElement(Enter_Email).sendKeys("kavitapatil@gmail.com");
+	driver.findElement(Enter_Email).sendKeys("kavitapatil271992@gmail.com");
 	driver.findElement(CreateAcc).click();
 	Thread.sleep(2000);
 }

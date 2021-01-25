@@ -192,20 +192,19 @@ public class StepsDefn {
 				public void click_on_add_to_cart() {
 				   buy.Add_To_Cart();
 				}
-				@Then("Check the User sees the Pop Up: Product Successfully Added to Cart")
+				@When("Check the User sees the Pop Up: Product Successfully Added to Cart")
 				public void check_the_user_sees_the_pop_up_product_successfully_added_to_cart() {
 				    buy.Added_Cart_Validation();
-				    buy.Size_Quntity_Confirmation();
+				  // buy.Size_Quntity_Confirmation();
 				}
 
 				@When("Click on Proceed to Checkout.")
 				public void click_on_proceed_to_checkout() throws Exception {
-					   buy.Checkout();
+					   buy.Checkout_After_AddedToCart();
 				}
 
                 @When("Click on Proceed to Check out again and reach till payment and click on Terms and condition check box.")
 				public void click_on_proceed_to_check_out_again_and_reach_till_payment_and_click_on_terms_and_condition_check_box() throws Exception {
-					 // buy.Checkout_Validations();  
                 	  buy.Procedd_To_Checkout();
 				}
 				@When("On Payment Page click on Pay by bank wire and Click on I confirm my Order")
